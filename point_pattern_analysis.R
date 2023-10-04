@@ -9,6 +9,7 @@ install.packages("sf")
 library(maptools)
 library(spatstat)
 library(sf)
+library(ggplot2)
 
 
 
@@ -67,14 +68,31 @@ L <- envelope(death_soho,
 ###From the results we can see that at very small distances between points (x-axis) there is an 
 ###immediate spike in density (y-axis)
 
-plot(L, 
+L_plot = plot(L, 
      main = "Global Clustering Results", 
      ylab = "Density Function",
-     xlab = "Distance") 
+     xlab = "Distance") |> ggsave("ripleysK.png")
 
 
 
+library(ggplot2)
 
+# Create a base R plot (replace this with your actual plot code)
+L <- ...  # Your data and plot code here
+
+# Convert the base R plot to a ggplot2 object
+L_plot_gg <- as_ggplot(L)
+
+# Customize the ggplot2 plot (add titles, labels, etc.)
+L_plot_gg <- L_plot_gg +
+  labs(
+    title = "Global Clustering Results",
+    y = "Density Function",
+    x = "Distance"
+  )
+
+# Save the ggplot2 plot as an image file using ggsave
+ggsave("ripleysK.png", plot = L_plot_gg)
 
 
 
